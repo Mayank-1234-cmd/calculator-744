@@ -1,5 +1,15 @@
+class bcolors:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKCYAN = '\033[96m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
+# stackoverflow
 import os
-print("Welcome to calculator! This is actually a complimation of multiple calculators I made before.")
 graph = '''.............................................
 .............................................
 .............................................
@@ -646,10 +656,13 @@ def add__list(lst):
   return x
 def exit(one):
   exit(0)
-name = input("Name pls:")
+print(bcolors.HEADER, end="")
+print("<calculator v1.2>")
+name = input("username: ")
+# name = "root"
 import os, time
 os.system("clear")
-print("""[Calculator] Type help('1') for help.""")
+print(bcolors.HEADER + """[Calculator] Type help('1') for help.""" + bcolors.ENDC)
 def help(one):
   if one=='1':
     print("help('basics') - Help on basic stuff.")
@@ -753,18 +766,25 @@ def help(one):
     raise Exception("This help page does not exist.") # calls error
 while True:
   try:
-    t = input("["+str(int(time.time()))+"] "+name+"@calculator:")
+    t = input(bcolors.OKBLUE + "["+str(int(time.time()))+"] "+name+"@calculator: " + bcolors.ENDC)
     t_lower=t.lower()
     if "amo" in t_lower and "us" in t_lower:
       print("ඞ sus")
     if t.startswith("print("):
+      print(bcolors.OKGREEN, end="")
       exec(t)
+      print(bcolors.ENDC, end="")
     else:
-      exec("print("+t+")")
+      if t == None or t == "":
+        pass
+      else:
+        print(bcolors.OKGREEN, end="")
+        exec("print("+t+")")
+        print(bcolors.ENDC, end="")
     # z = exec("print("t)
     # if z == None:
     #   exec("print("+t+")")
     # else:
     #   print(z)
   except Exception as e:
-    print("SYN ERR ("+str(e)+")") # ti-84 pogers
+    print(bcolors.WARNING + "SYN ERR ("+str(e)+")" + bcolors.ENDC) # ti-84 pogers
