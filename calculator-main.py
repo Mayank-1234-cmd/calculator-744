@@ -652,6 +652,7 @@ os.system("clear")
 print("""[Calculator] Type help('1') for help.""")
 def help(one):
   if one=='1':
+    print("help('basics') - Help on basic stuff.")
     print("help('testgraph') - Help on the graphing calculator component (testgraph.py).")
     print("help('set-theory') - Help on the set theory component (set-theory.py).")
     print("help('matrice') - Help on the matrice component (matrice.py).")
@@ -671,6 +672,18 @@ def help(one):
     print("allPointsBetween_int(x1, y1, x2, y2, accuracy)  Think about it this way; It gets everything from allPointsBetween_float")
     print("                                                but rounds the decimals to the nearest- i mean lower- number.")
     print("Do help('testgraph-2') for page 2.")
+  elif one=='basics':
+    print("BASIC HELP\n___")
+    print("x = [1,2,3]")
+    print("        Make a list x which has the values 1, 2, and 3.")
+    print("x = 1")
+    print("        Make a variable x which is set to 1.")
+    print("y = 2 + 3")
+    print("        Make a variable y which is set to 2 + 3 (or 5).")
+    print("z = 'word'")
+    print("        Make a variable z set to word (word)")
+    print("x+z, x-z, x/z, x*z")
+    print("        Add, subtract, divide, or multiply x by z")
   elif one=="testgraph-2":
     print("GRAPHING HELP [PAGE 2]\n___")
     print("plotLine(graph, x1, x2, y1, y2, mode='integer',   Plots a line in graph from x1,y1 to x2,y2")
@@ -726,6 +739,7 @@ def help(one):
     print("stdev(lst): Get standard deviation of a list.")
     print("mad(lst): Get mean absolute deviation of a list.")
   elif one == 'listcalc':
+    print("LIST CALCULATOR\n___")
     print("filterout(1,2,3,4)      Remove strings and negative numbers from list.")
     print("transform(1,2,3,4)      Remove duplicates from list.")
     print("reverselt(1,2,3,4)      Reverse a list.")
@@ -739,6 +753,15 @@ def help(one):
     raise Exception("This help page does not exist.") # calls error
 while True:
   try:
-    exec(input("["+str(int(time.time()))+"] "+name+"@calculator:"))
+    t = input("["+str(int(time.time()))+"] "+name+"@calculator:")
+    if t.startswith("print("):
+      exec(t)
+    else:
+      exec("print("+t+")")
+    # z = exec("print("t)
+    # if z == None:
+    #   exec("print("+t+")")
+    # else:
+    #   print(z)
   except Exception as e:
     print("SYN ERR ("+str(e)+")") # ti-84 pogers
