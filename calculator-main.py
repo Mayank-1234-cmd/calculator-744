@@ -687,13 +687,13 @@ def help(one):
     print("Do help('testgraph-2') for page 2.")
   elif one=='basics':
     print("BASIC HELP\n___")
-    print("x = [1,2,3]")
+    print("statement x = [1,2,3]")
     print("        Make a list x which has the values 1, 2, and 3.")
-    print("x = 1")
+    print("statement x = 1")
     print("        Make a variable x which is set to 1.")
-    print("y = 2 + 3")
+    print("statement y = 2 + 3")
     print("        Make a variable y which is set to 2 + 3 (or 5).")
-    print("z = 'word'")
+    print("statement z = 'word'")
     print("        Make a variable z set to word (word)")
     print("x+z, x-z, x/z, x*z")
     print("        Add, subtract, divide, or multiply x by z")
@@ -779,7 +779,11 @@ while True:
         pass
       else:
         print(bcolors.OKGREEN, end="")
-        exec("print("+t+")")
+        if "statement " in t:
+          exec(t.replace("statement ","",1))
+          print("Executed statement.")
+        else:
+          exec("print("+t+")")
         print(bcolors.ENDC, end="")
     # z = exec("print("t)
     # if z == None:
