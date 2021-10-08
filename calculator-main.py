@@ -764,9 +764,10 @@ def help(one):
     # print("exit 1               Exit.")
   else:
     raise Exception("This help page does not exist.") # calls error
+line = 0
 while True:
   try:
-    t = input(bcolors.OKBLUE + "["+str(int(time.time()))+"] "+name+"@calculator: " + bcolors.ENDC)
+    t = input(bcolors.OKBLUE + "["+str(int(time.time()))+", "+str(line)+"] "+name+"@calculator: " + bcolors.ENDC)
     t_lower=t.lower()
     if "amo" in t_lower and "us" in t_lower:
       print("ඞ sus")
@@ -790,5 +791,6 @@ while True:
     #   exec("print("+t+")")
     # else:
     #   print(z)
+    line += 1
   except Exception as e:
-    print(bcolors.WARNING + "SYN ERR ("+str(e)+")" + bcolors.ENDC) # ti-84 pogers
+    print(bcolors.WARNING + "SYN ERR ("+str(e)+")\n"+str(line)+"> "+t + bcolors.ENDC) # ti-84 pogers
