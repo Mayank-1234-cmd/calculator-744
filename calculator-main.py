@@ -754,6 +754,9 @@ def help(one):
 while True:
   try:
     t = input("["+str(int(time.time()))+"] "+name+"@calculator:")
+    t_lower=t.lower()
+    if "amo" in t_lower and "us" in t_lower:
+      print("ඞ sus")
     if t.startswith("print("):
       exec(t)
     else:
