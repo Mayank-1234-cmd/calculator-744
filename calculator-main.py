@@ -672,6 +672,21 @@ print(bcolors.HEADER, end="")
 print("<calculator v1.2>")
 name = input("username: ")
 # name = "root"
+def list(x):
+  v = x.split(',')
+  for i in range(0, len(v)):
+    try:
+      v[i] = int(v[i])
+    except Exception as e:
+      try:
+        v[i] = float(v[i])
+      except Exception as e:
+        pass
+        # try:
+        #   v[i] = str(v[i])
+        # except Exception as e:
+        #   pass
+
 import os, time
 os.system("clear")
 print(bcolors.HEADER + """[Calculator] Type help('1') for help.""" + bcolors.ENDC)
@@ -679,6 +694,7 @@ def help(one):
   if one=='1':
     print("help('basics') - Help on basic stuff.")
     print("help('multiline') - Help on using multiline programs.")
+    print("help('bool') - Help on booleans.")
     print("help('testgraph') - Help on the graphing calculator component (testgraph.py).")
     print("help('set-theory') - Help on the set theory component (set-theory.py).")
     print("help('matrice') - Help on the matrice component (matrice.py).")
@@ -704,6 +720,13 @@ def help(one):
     print("multiline rd                   Reads multiline code.")
     print("multiline exec                 Executes multiline code.")
     print("multiline add [text]           Adds text to multiline. (new line)")
+  elif one == 'bool':
+    print("BOOLEAN HELP\n___")
+    print("bool x < y                  Y is greater than x?")
+    print("bool x = y                  X = Y?")
+    print("bool x is y                 x is y?")
+    print("bool x-1 = x+1 = x          x - 1 is x + 1 is x?")
+    print("bool x is in list('1,2,3')  x is in list 1,2,3?")
   elif one=='basics':
     print("BASIC HELP\n___")
     print("statement x = [1,2,3]")
@@ -803,6 +826,21 @@ while True:
           exec(t.replace("statement ","",1))
           print("Executed statement.")
           #multiline_add multiline_exec multiline_rd (read) multiline_del
+        elif t.startswith("bool "):
+          t = t.replace("bool ","",1)
+          t = t.replace("is in","in")
+          t = t.replace("=","==")
+          t = t.replace("is","==")
+          print("Converted: "+t)
+          t = eval(t)
+          # print(bool(t))
+          if t == True:
+            t = 'yes'
+          elif t == False:
+            t = 'no'
+          else:
+            raise Exception("Neither yes nor no.")
+          print(t)
         elif t.startswith("multiline "):
           t = t.replace("multiline ","",1)
           if t.startswith("add "):
@@ -825,6 +863,8 @@ while True:
             print(multiline_read())
           else:
             raise Exception("Invalid argument.")
+        elif t == "bool" or t == "multiline" or t == "statement":
+          raise Exception("you forgor to add arguments")
         else:
           exec("print("+t+")")
         print(bcolors.ENDC, end="")
