@@ -831,7 +831,7 @@ while True:
           t = t.replace("is in","in")
           t = t.replace("=","==")
           t = t.replace("is","==")
-          print("Converted: "+t)
+          # print("Converted: "+t)
           t = eval(t)
           # print(bool(t))
           if t == True:
