@@ -10,6 +10,18 @@ class bcolors:
     UNDERLINE = '\033[4m'
 # stackoverflow
 import os
+
+# commands for fs/multiline
+# import multiline
+def multiline_add(line):
+  with open("mult", "a") as mult:
+    mult.write('\n'+line)
+def multiline_exec():
+  with open("mult", 'r+') as mult:
+    mult.truncate(0)
+def multiline_read():
+  with open("mult") as mult:
+    return "\n".join(mult.readlines()).replace("\n\n","\n")
 graph = '''.............................................
 .............................................
 .............................................
@@ -188,16 +200,16 @@ def allPointsBetween_float(x1, y1, x2, y2, accuracy):
 # > code create new graph
 # [jump to line 44, basicgraph="""]
 # > code assign new graph
-def newGraphAssign(newGraph):
-    global basicgraph
-    # just in case
-    basicgraph = newGraph
-    return 0  # this isnt c++😂
+# def newGraphAssign(newGraph):
+#     global basicgraph
+#     # just in case
+#     basicgraph = newGraph
+#     return 0  # this isnt c++😂
 
 
-# > code show graph
-def showGraph():
-    return basicgraph
+# # > code show graph
+# def showGraph():
+#     return basicgraph
 
 
 # a("mogus")
@@ -666,6 +678,7 @@ print(bcolors.HEADER + """[Calculator] Type help('1') for help.""" + bcolors.END
 def help(one):
   if one=='1':
     print("help('basics') - Help on basic stuff.")
+    print("help('multiline') - Help on using multiline programs.")
     print("help('testgraph') - Help on the graphing calculator component (testgraph.py).")
     print("help('set-theory') - Help on the set theory component (set-theory.py).")
     print("help('matrice') - Help on the matrice component (matrice.py).")
@@ -685,6 +698,12 @@ def help(one):
     print("allPointsBetween_int(x1, y1, x2, y2, accuracy)  Think about it this way; It gets everything from allPointsBetween_float")
     print("                                                but rounds the decimals to the nearest- i mean lower- number.")
     print("Do help('testgraph-2') for page 2.")
+  elif one=='multiline':
+    print("MULTILINE HELP\n___")
+    print("multiline del                  Deletes all stored multiline code.")
+    print("multiline rd                   Reads multiline code.")
+    print("multiline exec                 Executes multiline code.")
+    print("multiline add [text]           Adds text to multiline. (new line)")
   elif one=='basics':
     print("BASIC HELP\n___")
     print("statement x = [1,2,3]")
@@ -783,6 +802,29 @@ while True:
         if "statement " in t:
           exec(t.replace("statement ","",1))
           print("Executed statement.")
+          #multiline_add multiline_exec multiline_rd (read) multiline_del
+        elif t.startswith("multiline "):
+          t = t.replace("multiline ","",1)
+          if t.startswith("add "):
+            # addd new line
+            t = t.replace("add ","",1)
+            multiline_add(t)
+          elif t.startswith("exec"):
+            # exec
+            t = t.replace("exec","",1)
+            exec(multiline_read())
+            multiline_exec() # delete all 
+          elif t.startswith("del"):
+            # exec
+            t = t.replace("del","",1)
+            # exec(multiline_read())
+            multiline_exec()
+          elif t.startswith("rd"):
+            # read
+            # t = t.replace("rd ","",1)
+            print(multiline_read())
+          else:
+            raise Exception("Invalid argument.")
         else:
           exec("print("+t+")")
         print(bcolors.ENDC, end="")
