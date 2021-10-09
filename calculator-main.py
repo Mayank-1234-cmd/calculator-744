@@ -173,7 +173,7 @@ def allPointsBetween_int(x1, y1, x2, y2, accuracy):
 def allPointsBetween_float(x1, y1, x2, y2, accuracy):
     '''Does not use allPointsBetween()
     Requires extra parameter accuracy (1=default)
-    Returns in fkiat.'''
+    Returns in float.'''
     # slope = dy/dx (rise/run)
     dy = y2 - y1
     dx = x2 - x1
@@ -722,11 +722,14 @@ def help(one):
     print("multiline add [text]           Adds text to multiline. (new line)")
   elif one == 'bool':
     print("BOOLEAN HELP\n___")
-    print("bool x < y                  Y is greater than x?")
-    print("bool x = y                  X = Y?")
-    print("bool x is y                 x is y?")
-    print("bool x-1 = x+1 = x          x - 1 is x + 1 is x?")
-    print("bool x is in list('1,2,3')  x is in list 1,2,3?")
+    print("bool x is less than y?                 x is smaller than y?")
+    print("bool x is equal to y?                 X = Y?")
+    print("bool x is y?                          x is y (or x = y?)?")
+    print("bool x-1 = x+1 = x?                   x - 1 is x + 1 is x?")
+    print("bool x is in list('1,2,3')?           is x in the list 1,2,3?")
+    print("bool x is greater than or equal to y? is x greater than or equal to y?")
+    print("bool x is less than or equal to y?    is x less than or equal to y?")
+    print("bool x is not equal to y?             is x not equal to y?")
   elif one=='basics':
     print("BASIC HELP\n___")
     print("statement x = [1,2,3]")
@@ -827,9 +830,17 @@ while True:
           print("Executed statement.")
           #multiline_add multiline_exec multiline_rd (read) multiline_del
         elif t.startswith("bool "):
+          t = t.replace("=","==")
+          t = t.replace("?","")
           t = t.replace("bool ","",1)
           t = t.replace("is in","in")
-          t = t.replace("=","==")
+          # <>
+          t = t.replace("is greater than",">")
+          t = t.replace("is less than","<")
+          t = t.replace(" or equal to","=") # <= >=
+          # t = t.replace("is less than or equal to","<=")
+          t = t.replace("is not equal to","!=")
+          t = t.replace("is equal to","==")
           t = t.replace("is","==")
           # print("Converted: "+t)
           t = eval(t)
