@@ -696,7 +696,7 @@ print(bcolors.HEADER + """[Calculator] Type help<='1'=> for help.""" + bcolors.E
 def help(one):
   if one=='1':
     print("SYNTAX UPDATE: function('keyword') is now function<='keyword'=>;")
-    print("[1,2,3] is now list<='1,2,3'=> or </1,2,3/>. ")
+    print("[1,2,3] is now </1,2,3/>. ")
     print("help('basics') - Help on basic stuff.")
     print("help('multiline') - Help on using multiline programs.")
     print("help('bool') - Help on booleans.")
@@ -815,6 +815,7 @@ def help(one):
   else:
     raise Exception("This help page does not exist.") # calls error
 line = 0
+# print("\u001b[0m")
 while True:
   try:
     t = input(bcolors.OKBLUE + "["+str(int(time.time()))+", "+str(line)+"] "+name+"@calculator: " + bcolors.ENDC + bcolors.HEADER)
