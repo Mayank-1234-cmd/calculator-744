@@ -681,17 +681,22 @@ def list(x):
       try:
         v[i] = float(v[i])
       except Exception as e:
-        pass
+        if v[i] == "None" or v[i] == "null":
+          v[i] == None
+          # pass
         # try:
         #   v[i] = str(v[i])
         # except Exception as e:
         #   pass
+  return v
 
 import os, time
 os.system("clear")
-print(bcolors.HEADER + """[Calculator] Type help('1') for help.""" + bcolors.ENDC)
+print(bcolors.HEADER + """[Calculator] Type help< '1' > for help.""" + bcolors.ENDC)
 def help(one):
   if one=='1':
+    print("SYNTAX UPDATE: function('keyword') is now function <'keyword'>;")
+    print("[1,2,3] is now list <'1,2,3'>. ")
     print("help('basics') - Help on basic stuff.")
     print("help('multiline') - Help on using multiline programs.")
     print("help('bool') - Help on booleans.")
@@ -812,7 +817,11 @@ def help(one):
 line = 0
 while True:
   try:
-    t = input(bcolors.OKBLUE + "["+str(int(time.time()))+", "+str(line)+"] "+name+"@calculator: " + bcolors.ENDC)
+    t = input(bcolors.OKBLUE + "["+str(int(time.time()))+", "+str(line)+"] "+name+"@calculator: " + bcolors.ENDC + bcolors.HEADER)
+    print(bcolors.ENDC, end = "")
+    t = t.replace(" <", "(")
+    t = t.replace("> ", ")")
+    t = t.replace(">;",")")
     t_lower=t.lower()
     if "amo" in t_lower and "us" in t_lower:
       print("ඞ sus")
@@ -841,7 +850,7 @@ while True:
           # t = t.replace("is less than or equal to","<=")
           t = t.replace("is not equal to","!=")
           t = t.replace("is equal to","==")
-          t = t.replace("is","==")
+          # t = t.replace("is","==")
           # print("Converted: "+t)
           t = eval(t)
           # print(bool(t))
