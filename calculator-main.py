@@ -692,11 +692,11 @@ def list(x):
 
 import os, time
 os.system("clear")
-print(bcolors.HEADER + """[Calculator] Type help< '1' > for help.""" + bcolors.ENDC)
+print(bcolors.HEADER + """[Calculator] Type help<='1'=> for help.""" + bcolors.ENDC)
 def help(one):
   if one=='1':
-    print("SYNTAX UPDATE: function('keyword') is now function <'keyword'>;")
-    print("[1,2,3] is now list <'1,2,3'>. ")
+    print("SYNTAX UPDATE: function('keyword') is now function<='keyword'=>;")
+    print("[1,2,3] is now list<='1,2,3'=> or </1,2,3/>. ")
     print("help('basics') - Help on basic stuff.")
     print("help('multiline') - Help on using multiline programs.")
     print("help('bool') - Help on booleans.")
@@ -819,9 +819,11 @@ while True:
   try:
     t = input(bcolors.OKBLUE + "["+str(int(time.time()))+", "+str(line)+"] "+name+"@calculator: " + bcolors.ENDC + bcolors.HEADER)
     print(bcolors.ENDC, end = "")
-    t = t.replace(" <", "(")
-    t = t.replace("> ", ")")
-    t = t.replace(">;",")")
+    t = t.replace("<=", "(")
+    t = t.replace("=>", ")")
+    t = t.replace("</","list('")
+    t = t.replace("/>","')")
+    # t = t.replace(">;",")")
     t_lower=t.lower()
     if "amo" in t_lower and "us" in t_lower:
       print("ඞ sus")
