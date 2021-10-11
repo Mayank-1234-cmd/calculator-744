@@ -1,3 +1,4 @@
+# THERE IS NO BUG WITH THIS FILE, replit is dumb check .replit for info
 class bcolors:
     HEADER = '\033[95m'
     OKBLUE = '\033[94m'
@@ -692,10 +693,10 @@ def list(x):
 
 import os, time
 os.system("clear")
-print(bcolors.HEADER + """[Calculator] Type help<='1'=> for help.""" + bcolors.ENDC)
+print(bcolors.HEADER + """[Calculator] Type help<|'1'|> for help.""" + bcolors.ENDC)
 def help(one):
   if one=='1':
-    print("SYNTAX UPDATE: function('keyword') is now function<='keyword'=>;")
+    print("SYNTAX UPDATE: function('keyword') is now function<|'keyword'|>;")
     print("[1,2,3] is now </1,2,3/>. ")
     print("help('basics') - Help on basic stuff.")
     print("help('multiline') - Help on using multiline programs.")
@@ -820,8 +821,8 @@ while True:
   try:
     t = input(bcolors.OKBLUE + "["+str(int(time.time()))+", "+str(line)+"] "+name+"@calculator: " + bcolors.ENDC + bcolors.HEADER)
     print(bcolors.ENDC, end = "")
-    t = t.replace("<=", "(")
-    t = t.replace("=>", ")")
+    t = t.replace("<|", "(")
+    t = t.replace("|>", ")")
     t = t.replace("</","list('")
     t = t.replace("/>","')")
     # t = t.replace(">;",")")
