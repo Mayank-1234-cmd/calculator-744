@@ -30,7 +30,7 @@ import os
 # import multiline
 def multiline_add(line):
   with open("mult", "a") as mult:
-    mult.write('\n'+line)
+    mult.write('\n'+line)#
 def multiline_exec():
   with open("mult", 'r+') as mult:
     mult.truncate(0)
