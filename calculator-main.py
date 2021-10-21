@@ -1,3 +1,18 @@
+
+def solveAlgebraBrute(algebraEquation, start, end, addper):
+  '''Assumes only variable is X. If there are two answers this only returns one of them.'''
+  infinity = 99999
+  z = start
+  for i in range(start, infinity):
+    # check the boolean
+    if eval(algebraEquation.replace("x", str(z))):
+      print("Evaluating "+algebraEquation.replace("x", str(z))+"...")
+      return "Somewhere around "+str(z)
+    else:
+      pass
+    z += addper
+    if z <= end:
+      return "No results found. Try changing addper." 
 class bcolors:
     HEADER = '\033[95m'
     OKBLUE = '\033[94m'
