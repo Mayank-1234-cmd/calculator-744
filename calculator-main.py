@@ -1,18 +1,72 @@
+# sus from Amogos
 
-def solveAlgebraBrute(algebraEquation, start, end, addper):
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# stupid Floating Point Accuracy
+from decimal import *
+def solveAlgebraBrute(algebraEquation, start = -100, end = 100, addper = 0.01, debug = False):
   '''Assumes only variable is X. If there are two answers this only returns one of them.'''
   infinity = 99999
   z = start
+  originalAlg = algebraEquation
   for i in range(start, infinity):
     # check the boolean
-    if eval(algebraEquation.replace("x", str(z))):
-      print("Evaluating "+algebraEquation.replace("x", str(z))+"...")
-      return "Somewhere around "+str(z)
+    algebraEquation = originalAlg.replace('x', str(z))
+    if debug == True:
+        print(algebraEquation + "   " + str(z))
+    if str(eval(algebraEquation)) == 'True':
+      return z
     else:
+    #   print(str(eval(algebraEquation)))
       pass
-    z += addper
-    if z <= end:
-      return "No results found. Try changing addper." 
+    # z += addper
+    if z == end:
+      return "No results found.\nParams:\nSTART: Start of values to test on algebra equation\nEND: End of values to test on algebra equation\nADDPER: Set this to the number of decimal places that might be the answer. if the answer, you think, could be 1.233456, set ADDPER to 0.00001, but if you think the answer can be 1, set addper to 1 (since the answer occurs every 1 number)\ndebug: set to True to view debug. False by default" 
+    z = Decimal(str(z)) + Decimal(str(addper))
+    if debug == True:
+      print(z)
+
 class bcolors:
     HEADER = '\033[95m'
     OKBLUE = '\033[94m'
@@ -30,7 +84,7 @@ import os
 # import multiline
 def multiline_add(line):
   with open("mult", "a") as mult:
-    mult.write('\n'+line)#
+    mult.write('\n'+line)
 def multiline_exec():
   with open("mult", 'r+') as mult:
     mult.truncate(0)
@@ -714,6 +768,15 @@ def help(one):
     print("help('graph_plots') - Help on the plot graphing component (graph_plots.py).")
     print("help('desm') - Help on an attempt to clone desmos (desmos but python.py).")
     print("help('listcalc') - Help on the list calculator component (calculatory.py).")
+    print("help('algebra') - Help on the algebra component (one cmd only ;-;)")
+  elif one=='algebra':
+    print("solveAlgebraBrute(algebraEquation, start = -100, end = 100, addper = 0.01, debug = False)")
+    print("          Algebra equation: Specified algebra equation e.g. '2*x == 4'")
+    print("   [-100] start: Minimum possible value the answer can be (subtracted by 1)")
+    print("    [100] end: Maximum possible value the answer can be (added to with 1)")
+    print("   [0.01] addper: If the answer can be 1.23 or 2.42, set addper to 0.01.")
+    print("                  If it could be 2.235 or 5.322, set addper to 0.001")
+    print("  [False] debug: Show debug statements")
   elif one=='testgraph':
     print("GRAPHING HELP\n___")
     print("plotAtXy(graph, x, y, appendLetter)             Plot a function. A prebuilt graph is in variable `graph.")
