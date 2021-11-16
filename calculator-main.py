@@ -3,6 +3,7 @@
 
 # stupid Floating Point Accuracy
 from decimal import *
+import math
 
 
 def Precise(x1):
@@ -67,6 +68,12 @@ def multiline_read():
     with open("mult") as mult:
         return "\n".join(mult.readlines()).replace("\n\n", "\n")
 
+
+def xd(l,e):
+  return (l-e)*(l-e)
+
+def distanceTwoPts(x1, x2, y1, y2):
+  return Math.sqrt(xd(y2, x2) + xd(y1, x1))
 
 graph = """.............................................
 .............................................
@@ -935,6 +942,9 @@ def help(one):
     elif one == "testgraph-2":
         print("GRAPHING HELP [PAGE 2]\n___")
         print(
+            "distanceTwoPts(x1, y1, x2, y2)                  Gets line length x1, y1, x2, y2"
+        )
+        print(
             "plotLine(graph, x1, x2, y1, y2, mode='integer',   Plots a line in graph from x1,y1 to x2,y2"
         )
         print(
@@ -953,6 +963,10 @@ def help(one):
         print(
             "   appendLetter='*'                               < See plotAtXy for definition of appendLetter."
         )
+        print("
+        
+        ")
+        
         print("Thats all!")
     elif one == "set-theory":
         print("SET THEORY HELP\n___")
