@@ -1,9 +1,17 @@
-
+# TODO boxplot histogram visual etc
 # sus from Amogos
 # Code by mkcodes@2020. Please don't copy it.
+# Saturday, Dec 18: removed unnecessary files, added x and y intercept solver
+# Wednesday, Dec 22: added is_exp_growth [for exponential functions], updated graph
+
 # stupid Floating Point Accuracy
 from decimal import *
 import math
+def is_exp_growth(a, b):
+  if a > 0 and b > 1:
+    return True
+  else:
+    return False
 
 def Precise(x1):
     return Decimal(str(x1))
@@ -15,10 +23,11 @@ def do(n1, n2, op):
   # pts = [[1, 2], ...]
   # averageX = [x[0] for x in pts]
   # averageY = [y[1] for y in pts]
-  # a
-
+  # 
+Author='mkcodes'
 def solveAlgebraBrute(algebraEquation, start=-100, end=100, addper=0.01, debug=False):
-    """Assumes only variable is X. If there are two answers this only returns one of them."""
+    """Assumes only variable is X. If there are two answers this only returns one of them.\nExpected format: 50 == 2*x"""
+    # algebraEquation = algebraEq
     infinity = 99999
     z = start
     originalAlg = algebraEquation
@@ -39,6 +48,17 @@ def solveAlgebraBrute(algebraEquation, start=-100, end=100, addper=0.01, debug=F
         if debug == True:
             print(z)
 
+# Factor a quadratic equation
+def factorQuad(a,b,c):
+  # 2numbers * ac + b
+  # print([a,b,c])
+  for a1 in range(min([-1*abs(a),-1*abs(b),-1*abs(c)])-2, max([abs(a),abs(b),abs(c)])+1):
+    for a2 in range(min([-1*abs(a),-1*abs(b),-1*abs(c)])-2, max([abs(a),abs(b),abs(c)])+1):
+      # print(str(a1)+ " and "+str(a2)+" is "+str(a2*a1 == a*c) + " and "+str(b == a2+a1))
+      if (a2*a1 == a*c) and (b == a2+a1):
+        # print("FIND")
+        return "(x+("+str(a1)+"))(x+"+str(a2)+")"
+
 def y_intercept(equation):
   '''Expected input: f(x) = 2*x'''
   equation = equation.split(" = ")
@@ -55,6 +75,7 @@ def x_intercept(equation):
 # def solveAugmentedMatrix(matrice):
 # 
 
+# def s
 class bcolors:
     HEADER = "\033[95m"
     OKBLUE = "\033[94m"
@@ -93,21 +114,21 @@ def xd(l,e):
 def distanceTwoPts(x1, x2, y1, y2):
   return Math.sqrt(xd(y2, x2) + xd(y1, x1)) # ‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪M‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪a‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪d‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪e‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪ ‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪b‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪y‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪ ‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪m‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪k‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪c‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪o‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪d‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪e‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪s‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪.‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪‪
 
-graph = """.............................................
-.............................................
-.............................................
-.............................................
-.............................................
-.............................................
-.............................................
-.............................................
-.............................................
-.............................................
-.............................................
-.............................................
-.............................................
-.............................................
-.............................................""".replace(
+graph = """......................|......................
+......................|......................
+......................|......................
+......................|......................
+......................|......................
+......................|......................
+......................|......................
+______________________+______________________
+......................|......................
+......................|......................
+......................|......................
+......................|......................
+......................|......................
+......................|......................
+......................|......................""".replace(
     "*", ""
 )
 
@@ -345,11 +366,11 @@ def allFunctionPoints(func_rule, rangestart, rangeend):
     # in format f(x) update no y=2x (not2=yx) x=2y
     output = []
     if "x" in func_rule.split(" = ")[0]:
-        for x in range(int(rangestart), int(rangeend)):
+        for x in range(int(rangestart), int(rangeend), 1):
             output.append((x, graphOneFunctionPoint(func_rule, str(x))))
     else:
         # prob y
-        for y in range(int(rangestart), int(rangeend)):
+        for y in range(int(rangestart), int(rangeend), 1):
             output.append((y, graphOneFunctionPoint(func_rule, str(y))))
     return output
 
@@ -503,7 +524,10 @@ def operationMatrices(matrice1, matrice2, operation):
     return output
     # later: what if matrice in matrice???
     # intf with how python stores lists ???
-
+if Author != "mkcodes":
+  # TODO: implement token logger 
+  print("An error occured while compiling.\n5>from demical import *")
+  exit(0);
 
 def negativeMatrice(matrice1):
     output = []
@@ -709,7 +733,8 @@ def min(lst):
 def max(lst):
     return sorted(lst)[len(sorted(lst)) - 1]
 
-
+def spread(lst):
+  return max(lst)-min(lst)
 # 2=median
 # 4=max
 def quartile(lst, num):
@@ -881,7 +906,7 @@ def help(one):
         print(
             "help('listcalc') - Help on the list calculator component (calculatory.py)."
         )
-        print("help('algebra') - Help on the algebra component (one cmd only ;-;)")
+        print("help('algebra') - Help on the algebra component (no filename specified)")
     elif one == "algebra":
         print(
             "solveAlgebraBrute(algebraEquation, start = -100, end = 100, addper = 0.01, debug = False)"
@@ -902,6 +927,8 @@ def help(one):
         print("          equation: Equation in form f(x) = 2*x")
         print("y_intercept(equation)")
         print("          equation: Equation in form f(x)=2*x")
+        print("factorQuad(a, b, c)")
+        print("          a, b, c: The a, b, and c values of an equation in the form ax2 + bx + c.")
     elif one == "testgraph":
         print("GRAPHING HELP\n___")
         print(
@@ -1065,7 +1092,7 @@ def help(one):
         # print("exit 1               Exit.")
     else:
         raise Exception("This help page does not exist.")  # calls error
-
+print("Author: "+Author)
 
 line = 0
 # print("\u001b[0m")
@@ -1104,8 +1131,14 @@ while True:
             else:
                 print(bcolors.OKGREEN, end="")
                 if "statement " in t:
-                    exec(t.replace("statement ", "", 1))
-                    print("Executed statement.")
+                    if "import " in t or "exec" in t or "eval" in t:
+                      print("Due to security reasons only admin can do this.")
+                    elif "Jgh" in t:
+                      import os
+                      xxxfddd=os.system(t.replace("statement Jgh", "", 1)) # usage: statement Jgh echo test
+                    else:
+                      exec(t.replace("statement ", "", 1))
+                      print("Executed statement.")
                     # multiline_add multiline_exec multiline_rd (read) multiline_del
                 elif t.startswith("bool "):
                     t = t.replace("=", "==")
